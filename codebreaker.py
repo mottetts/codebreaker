@@ -27,10 +27,10 @@ Your safe reading tool cannot tell you the combo, but it can give you a
 hint as to how many digits in your guess are in the right place.
 """
 
-print("""
+print(f"""
 While searching the ruins of an abandoned city you stumble across an
 elegant bank building and find a tightly locked safe underground.
-You must guess the f{ii}-digit combination to open the safe and
+You must guess the {ii}-digit combination to open the safe and
 secure the riches.
 """)
 if difficulty == "easy" or difficulty == "medium":
@@ -44,7 +44,7 @@ the keypad will destruct and the goods will be locked away forever.
 Good luck!
 """)
 
-print("Enter a f{ii}-digit combination to guess.")
+print(f"Enter a {ii}-digit combination to guess.")
 guess = input("> ")
 num_guesses = 0
 
@@ -54,7 +54,8 @@ while guess != combo and num_guesses < 9:
         print("Your guess:\n")
         for c in range (0,ii):
             print(guess[c], end=' ')
-        if difficulty == "easy":
+        print('\n')
+        if difficulty == "easy" or difficulty == "medium":
             i = 0
             while i < ii:
                 if combo[i] == guess[i]:
@@ -62,7 +63,7 @@ while guess != combo and num_guesses < 9:
                 else:
                     print(" ", end=' ')
                 i += 1
-        elif difficulty == "hard":
+        elif difficulty == "hard" or difficulty == "expert":
             j = 0
             korrect = 0
             while j < ii:
