@@ -1,9 +1,18 @@
 from random import randint
 from sys import argv
 
+#accept "easy", "medium", "hard", "expert" as difficulty settings
 script, difficulty = argv
 
-combo = f"{randint(0,9)}{randint(0,9)}{randint(0,9)}{randint(0,9)}"
+if difficulty == "easy" or difficulty == "hard":
+    ii = 3
+elif difficulty == "medium" or difficulty == "expert":
+    ii = 4
+
+combo = f"{randint(0,9)}{randint(0,9)}{randint(0,9)}"
+if ii == 4:
+    combo += f"{randint(0,9)}"
+
 loot = ['Portuguese Cruzeiros', 'Hungarian Forints', 'Thai Baht', 'Dutch Guilders',
         'silver ducats', 'rusty farthings', 'Gaulish Francs', 'Siamese Guineas']
 amt = randint(100,100000)
@@ -21,12 +30,12 @@ hint as to how many digits in your guess are in the right place.
 print("""
 While searching the ruins of an abandoned city you stumble across an
 elegant bank building and find a tightly locked safe underground.
-You must guess the four-digit combination to open the safe and
+You must guess the f{ii}-digit combination to open the safe and
 secure the riches.
 """)
-if difficulty == "easy":
+if difficulty == "easy" or difficulty == "medium":
     print(easy_mode)
-elif difficulty == "hard":
+elif difficulty == "hard" or difficulty == "expert":
     print(hard_mode)
 print("""
 But beware! If you don't guess the combination in ten tries,
@@ -35,18 +44,19 @@ the keypad will destruct and the goods will be locked away forever.
 Good luck!
 """)
 
-print("Enter a four-digit combination to guess.")
+print("Enter a f{ii}-digit combination to guess.")
 guess = input("> ")
 num_guesses = 0
 
 while guess != combo and num_guesses < 9:
-    if len(guess) == 4:
+    if len(guess) == ii:
         print("BUZZ! INCORRECT GUESS!")
         print("Your guess:\n")
-        print(guess[0], guess[1], guess[2], guess[3])
+        for c in range (0,ii):
+            print(guess[c], end=' ')
         if difficulty == "easy":
             i = 0
-            while i < 4:
+            while i < ii:
                 if combo[i] == guess[i]:
                     print("^", end=' ')
                 else:
@@ -55,7 +65,7 @@ while guess != combo and num_guesses < 9:
         elif difficulty == "hard":
             j = 0
             korrect = 0
-            while j < 4:
+            while j < ii:
                 if combo[j] == guess[j]:
                     korrect += 1
                 j += 1
