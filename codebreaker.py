@@ -43,8 +43,7 @@ while guess != combo and num_guesses < 9:
     if len(guess) == 4:
         print("BUZZ! INCORRECT GUESS!")
         print("Your guess:\n")
-        for c in guess:
-            print(guess[c], end=' ')
+        print(guess[0], guess[1], guess[2], guess[3])
         if difficulty == "easy":
             i = 0
             while i < 4:
