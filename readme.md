@@ -2,7 +2,7 @@
 
 ## version 0.1
 
-Codebreaker includes four difficulty levels; the level must be specified in a command-line argument when running the program, e.g.:
+Codebreaker includes four difficulty levels: easy, medium, hard and expert. The level must be specified in a command-line argument when running the program, e.g.:
 
 _python codebreaker.py hard_
 
